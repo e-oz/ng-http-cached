@@ -1,4 +1,4 @@
 # Angular HttpClient with caching
 
-* Caching only GET requests.
-* Set expiration time.
+* Only for GET requests (others shouldn't be cached by definition).
+* You can set cache expiration time.
