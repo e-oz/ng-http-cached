@@ -1,2 +1,4 @@
-# ng-http-cached
-Angular HttpClient with caching
+#Angular HttpClient with caching
+
+* Caching only GET requests.
+* Set expiration time.
