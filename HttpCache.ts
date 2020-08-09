@@ -1,4 +1,4 @@
-import {Observable, EMPTY} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {shareReplay, catchError} from "rxjs/operators";
@@ -15,11 +15,11 @@ export class HttpCache extends HttpClient {
     if (this.cache[key]) {
       return this.cache[key];
     }
-    this.cache[key] = super.get(url, options).pipe(
+    this.cache[key] = super.get<T>(url, options).pipe(
       shareReplay(1),
       catchError(err => {
         this.cache[key] = false;
-        return EMPTY;
+        return throwError(err);
       }));
     if (cacheTime) {
       setTimeout(() => {
